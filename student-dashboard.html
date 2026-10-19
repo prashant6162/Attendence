@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | CampusQR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand">Campus<span>QR</span></a>
+    <div class="nav-links">
+      <span id="navUser" class="muted">Student Portal</span>
+      <button class="btn btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <main class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        
+        
+      </div>
+      <a class="side-link active" href="student-dashboard.html">▦ Dashboard</a>
+      <a class="side-link" href="scan.html">▣ Scan QR Code</a>
+      <a class="side-link" href="attendance.html">▤ Attendance History</a>
+      <a class="side-link" href="index.html">⌂ Home</a>
+    </aside>
+
+    <section class="dashboard-content">
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">STUDENT WORKSPACE</span>
+          <h1>Student Dashboard</h1>
+          <p>Welcome back! Here is your attendance overview.</p>
+        </div>
+        <a href="scan.html" class="btn btn-primary">▣ Scan Attendance QR</a>
+      </div>
+
+      <section class="profile-banner">
+        <div class="avatar avatar-large">S</div>
+        <div class="profile-info">
+          <span class="muted">STUDENT PROFILE</span>
+          <h2 id="profileName">Student Name</h2>
+          <p>Enrollment: <strong id="profileEnrollment">—</strong></p>
+          <p>Program: Computer Science & Engineering</p>
+        </div>
+        <span class="status status-green">● Registered</span>
+      </section>
+
+      <div class="stat-grid dashboard-stats">
+        <div class="stat-card">
+          <span>Overall attendance</span><h2 id="overallPercent">0%</h2>
+          <div class="progress"><div id="overallBar" class="progress-bar" style="width:0%"></div></div>
+        </div>
+        <div class="stat-card"><span>Classes attended</span><h2 id="attendedCount">0</h2></div>
+        <div class="stat-card"><span>Attendance records</span><h2 id="recordCount">0</h2></div>
+      </div>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><h2>Subject-wise Attendance</h2><p>Based on records stored in this frontend .</p></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Subject</th><th>Present</th><th>Attendance</th></tr></thead>
+            <tbody id="subjectTable">
+              <tr><td colspan="3">No attendance records yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><h2>Recent Attendance</h2><p>Your latest attendance records.</p></div>
+          <a href="attendance.html" class="text-link">View all →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Subject</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
+            <tbody id="studentRecentTable">
+              <tr><td colspan="4">No attendance records yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
