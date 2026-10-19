@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard | CampusQR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand">Campus<span>QR</span></a>
+    <div class="nav-links">
+      <span id="navUser" class="muted">Faculty Portal</span>
+      <button class="btn btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <main class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="avatar">F</div>
+        <div><strong id="facultyName">Faculty Member</strong><small>Faculty Portal</small></div>
+      </div>
+      <a class="side-link active" href="faculty-dashboard.html">▦ Dashboard</a>
+      <a class="side-link" href="#generate">＋ Generate QR</a>
+      <a class="side-link" href="attendance.html">▤ Attendance Reports</a>
+      <a class="side-link" href="index.html">⌂ Home</a>
+    </aside>
+
+    <section class="dashboard-content">
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">FACULTY WORKSPACE</span>
+          <h1>Faculty Dashboard</h1>
+          <p>Manage lecture attendance from one place.</p>
+        </div>
+        <span class="status status-green">● Faculty Portal</span>
+      </div>
+
+      <div class="stat-grid dashboard-stats">
+        <div class="stat-card"><span>Sessions created</span><h2 id="sessionCount">0</h2></div>
+        <div class="stat-card"><span>Students present</span><h2 id="presentCount">0</h2></div>
+        <div class="stat-card"><span>Active sessions</span><h2 id="activeCount">0</h2></div>
+      </div>
+
+      <section class="panel" id="generate">
+        <div class="panel-heading">
+          <div><h2>Generate Attendance QR</h2><p>Create a QR code for your lecture.</p></div>
+          <span class="feature-icon">▦</span>
+        </div>
+
+        <form id="sessionForm" class="form-grid">
+          <div>
+            <label for="className">Class / Semester</label>
+            <select id="className" required>
+              <option value="CSE - Semester 1">CSE - Semester 1</option>
+              <option value="CSE - Semester 3">CSE - Semester 3</option>
+              <option value="CSE - Semester 5">CSE - Semester 5</option>
+              <option value="IT - Semester 3">IT - Semester 3</option>
+            </select>
+          </div>
+          <div>
+            <label for="subject">Subject</label>
+            <select id="subject" required>
+              <option value="Java Programming">Java Programming</option>
+              <option value="Database Management">Database Management</option>
+              <option value="Operating Systems">Operating Systems</option>
+              <option value="Computer Networks">Computer Networks</option>
+              <option value="Web Development">Web Development</option>
+            </select>
+          </div>
+          <div>
+            <label for="lecture">Lecture</label>
+            <select id="lecture" required>
+              <option value="Lecture 1">Lecture 1</option>
+              <option value="Lecture 2">Lecture 2</option>
+              <option value="Lecture 3">Lecture 3</option>
+              <option value="Lab Session">Lab Session</option>
+            </select>
+          </div>
+          <div>
+            <label for="sessionDate">Date</label>
+            <input id="sessionDate" type="date" required>
+          </div>
+          <div>
+            <label for="expirySeconds">QR expiry</label>
+            <select id="expirySeconds">
+              <option value="30">30 seconds</option>
+              <option value="60" selected>60 seconds</option>
+              <option value="120">2 minutes</option>
+            </select>
+          </div>
+          <div>
+            <label for="radius">Permitted radius (metres)</label>
+            <input id="radius" type="number" min="10" max="1000" value="100" required>
+          </div>
+          <div class="form-wide">
+            <button class="btn btn-primary" type="submit">＋ Generate QR Code</button>
+          </div>
+        </form>
+
+        <p id="facultyMessage" class="message" role="status"></p>
+
+        <div id="qrPanel" class="qr-panel hidden">
+          <div>
+            <span class="status status-green" id="sessionStatus">● Active session</span>
+            <h3 id="qrSubject">Attendance QR</h3>
+            <p id="qrDetails" class="muted"></p>
+            <h2 id="countdown" class="countdown">60s</h2>
+            <p class="muted">QR expiry countdown</p>
+            <button id="closeSession" type="button" class="btn btn-danger">Close Session</button>
+          </div>
+          <div class="qr-code-box">
+            <div id="qrcode"></div>
+            <p>Scan with the Student Portal</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><h2>Recent Attendance Sessions</h2><p>Your saved sessions and present counts.</p></div>
+          <a href="attendance.html" class="text-link">View reports →</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Subject / Class</th><th>Date</th><th>Status</th><th>Present</th></tr></thead>
+            <tbody id="sessionTable">
+              <tr><td colspan="4">No sessions created yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+  
+<!-- Subject -->
+<select id="subject" required>
+    <option value="">Select Subject</option>
+    <option value="Java Programming">Java Programming</option>
+    <option value="DBMS">DBMS</option>
+    <option value="Operating Systems">Operating Systems</option>
+</select>
+
+<!-- Class -->
+<select id="className" required>
+    <option value="">Select Class</option>
+    <option value="CSE-A">CSE-A</option>
+    <option value="CSE-B">CSE-B</option>
+</select>
+
+<!-- Lecture -->
+<select id="lecture" required>
+    <option value="">Select Lecture</option>
+    <option value="Lecture 1">Lecture 1</option>
+    <option value="Lecture 2">Lecture 2</option>
+    <option value="Lecture 3">Lecture 3</option>
+</select>
+
+<!-- Date -->
+<input type="date" id="date" required>
+
+<!-- Generate QR -->
+<button type="button" id="generateQRBtn">
+    Generate QR Code
+</button>
+
+<!-- QR display -->
+<div id="qrPanel" class="hidden">
+    <h3 id="qrSubject"></h3>
+    <p id="qrDetails"></p>
+    <div id="qrcode"></div>
+    <p id="qrStatus">Not generated</p>
+    <p id="qrCountdown"></p>
+
+    <button type="button" id="closeSessionBtn">
+        Close Attendance
+    </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
