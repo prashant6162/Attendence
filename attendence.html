@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Reports | CampusQR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand">Campus<span>QR</span></a>
+    <div class="nav-links">
+      <a id="dashboardLink" href="student-dashboard.html">Dashboard</a>
+      <button class="btn btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <main class="dashboard report-layout">
+    <section class="dashboard-content">
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">RECORD MANAGEMENT</span>
+          <h1>Attendance Reports</h1>
+          <p>Search, review, and export saved attendance records.</p>
+        </div>
+        <button id="exportCsv" class="btn btn-primary">↓ Export CSV</button>
+      </div>
+
+      <div class="stat-grid dashboard-stats">
+        <div class="stat-card"><span>Total records shown</span><h2 id="reportCount">0</h2></div>
+        <div class="stat-card"><span>Present</span><h2 id="reportPresent">0</h2></div>
+        <div class="stat-card"><span>Location verified</span><h2 id="reportLocation">0</h2></div>
+      </div>
+
+      <section class="panel">
+        <div class="filter-grid">
+          <div>
+            <label for="searchRecords">Search records</label>
+            <input id="searchRecords" placeholder="Name, enrollment or subject">
+          </div>
+          <div>
+            <label for="filterDate">Filter by date</label>
+            <input id="filterDate" type="date">
+          </div>
+          <div>
+            <label for="filterStatus">Status</label>
+            <select id="filterStatus">
+              <option value="all">All statuses</option>
+              <option value="Present">Present</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Enrollment</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="reportTable">
+              <tr><td colspan="7">Loading attendance records...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="reportMessage" class="message" role="status"></p>
+      </section>
+
+      <a id="backDashboard" class="text-link" href="student-dashboard.html">← Back to Dashboard</a>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
