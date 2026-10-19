@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan QR | CampusQR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand">Campus<span>QR</span></a>
+    <div class="nav-links">
+      <a href="student-dashboard.html">Dashboard</a>
+      <button class="btn btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <main class="scan-layout">
+    <div class="page-heading">
+      <div>
+        <span class="eyebrow">ATTENDANCE CHECK-IN</span>
+        <h1>Scan Attendance QR</h1>
+        <p>Scan your faculty's QR code to continue.</p>
+      </div>
+    </div>
+
+    <div class="scan-grid">
+      <section class="panel">
+        <div class="panel-heading">
+          <div><h2>QR Scanner</h2><p>Allow camera access when prompted.</p></div>
+          <span class="feature-icon">▣</span>
+        </div>
+
+        <div id="reader"></div>
+        <p id="scanMessage" class="message" role="status">Ready to scan.</p>
+
+        <div class="button-row">
+          <button id="startScanner" class="btn btn-primary" type="button">Start Camera</button>
+          <button id="stopScanner" class="btn btn-outline" type="button">Stop Camera</button>
+        </div>
+
+        <div class="divider-text">OR ENTER QR SESSION CODE</div>
+        <form id="manualQrForm">
+          <label for="manualQr">Session code or scanned QR content</label>
+          <input id="manualQr" placeholder="Paste QR code content here" required>
+          <button class="btn btn-outline btn-full" type="submit">Verify QR Code</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><h2>Confirm Attendance</h2><p>Complete your details after scanning.</p></div>
+        </div>
+
+        <div id="scannedSession" class="session-info">
+          <p class="muted">No QR code verified yet.</p>
+        </div>
+
+        <form id="attendanceForm">
+          <label for="enrollment">Enrollment Number</label>
+          <input id="enrollment" name="enrollment" required
+                 placeholder="Enter your enrollment number"
+                 pattern="[A-Za-z0-9/-]{5,25}"
+                 title="Enter a valid enrollment number">
+
+          <label for="studentFullName">Student Name</label>
+          <input id="studentFullName" name="studentFullName" required
+                 placeholder="Enter your full name">
+
+          <div class="location-box">
+            <div>
+              <strong>Location Verification</strong>
+              <p id="locationMessage" class="muted">Location not checked.</p>
+            </div>
+            <button id="verifyLocation" type="button" class="btn btn-outline">Verify Location</button>
+          </div>
+
+          <p class="small-note">Your browser will request location permission. Use this only when you are comfortable sharing your location with the college system.</p>
+          <p id="attendanceMessage" class="message" role="status"></p>
+          <button class="btn btn-primary btn-full" type="submit">Mark Attendance</button>
+        </form>
+      </section>
+    </div>
+
+    <a class="text-link" href="student-dashboard.html">← Back to Student Dashboard</a>
+  </main>
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <script src="script.js"></script>
+</body>
+</html>
