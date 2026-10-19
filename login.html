@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | CampusQR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+  <nav class="navbar">
+    <a href="index.html" class="brand">Campus<span>QR</span></a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main class="login-wrapper">
+    <section class="login-card">
+      <div class="login-logo">CQ</div>
+      <span class="eyebrow">WELCOME BACK</span>
+      <h1>Sign in to CampusQR</h1>
+      <p class="muted">Access your personalized college portal.</p>
+
+      <div class="role-switch">
+        <button type="button" class="role-tab active" data-role="student">🎓 Student</button>
+        <button type="button" class="role-tab" data-role="faculty">👨‍🏫 Faculty</button>
+      </div>
+
+      <form id="loginForm">
+        <label for="role">Login as</label>
+        <select id="role" name="role">
+          <option value="student">Student</option>
+          <option value="faculty">Faculty</option>
+        </select>
+
+        <label for="identity" id="identityLabel">Enrollment Number</label>
+        <input id="identity" name="identity" required
+               placeholder="Enter your enrollment number"
+               autocomplete="username">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"
+               required placeholder="Enter your password"
+               autocomplete="current-password">
+
+        <p id="loginMessage" class="message" role="status"></p>
+        <button class="btn btn-primary btn-full" type="submit">Sign In →</button>
+      </form>
+
+      
+
+      <p class="login-footer">New here? <a href="index.html">Explore CampusQR</a></p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
